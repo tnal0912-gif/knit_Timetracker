@@ -7,190 +7,78 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    color: #1a1a1a;
-    min-height: 100vh;
-    padding: 28px 24px;
-  }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; min-height: 100vh; padding: 28px 24px; }
 
-  .header {
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1.5px solid #1a1a1a;
-  }
-  .header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
-  }
-  h1 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .header-date {
-    font-size: 0.7rem;
-    color: #aaa;
-    letter-spacing: 0.05em;
-  }
-  .header-sub {
-    font-size: 0.72rem;
-    color: #bbb;
-    letter-spacing: 0.03em;
-  }
+  .header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1.5px solid #1a1a1a; }
+  .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  h1 { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-date { font-size: 0.7rem; color: #aaa; letter-spacing: 0.05em; }
+  .header-sub { font-size: 0.72rem; color: #bbb; letter-spacing: 0.03em; }
 
-  .project-input {
-    width: 100%;
-    padding: 10px 0;
-    border: none;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    color: #1a1a1a;
-    background: transparent;
-    outline: none;
-    margin-bottom: 24px;
-    letter-spacing: 0.02em;
-  }
+  .project-input { width: 100%; padding: 10px 0; border: none; border-bottom: 1px solid #e0e0e0; font-size: 0.85rem; font-family: 'Inter', sans-serif; color: #1a1a1a; background: transparent; outline: none; margin-bottom: 24px; }
   .project-input::placeholder { color: #ccc; }
   .project-input:focus { border-bottom-color: #1a1a1a; }
 
-  .display-wrap {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .display {
-    font-size: 3.2rem;
-    font-weight: 300;
-    color: #1a1a1a;
-    letter-spacing: 0.04em;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-  }
-  .display-deco {
-    font-size: 1.2rem;
-    margin-bottom: 6px;
-    opacity: 0.5;
-  }
+  .display-wrap { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 20px; }
+  .display { font-size: 3.2rem; font-weight: 300; color: #1a1a1a; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .display-deco { font-size: 1.2rem; margin-bottom: 6px; opacity: 0.5; }
 
-  .btn-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  button {
-    padding: 9px 18px;
-    border-radius: 0;
-    font-size: 0.75rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: all 0.15s;
-    border: 1.5px solid #1a1a1a;
-  }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  button { padding: 9px 18px; border-radius: 0; font-size: 0.75rem; font-family: 'Inter', sans-serif; font-weight: 500; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.15s; border: 1.5px solid #1a1a1a; }
   .btn-start { background: #1a1a1a; color: #fff; }
   .btn-start:hover { background: #333; }
-  .btn-stop { background: #fff; color: #1a1a1a; }
-  .btn-stop:hover { background: #f5f5f5; }
-  .btn-save { background: #fff; color: #1a1a1a; }
-  .btn-save:hover { background: #f5f5f5; }
-  .btn-reset {
-    background: transparent;
-    color: #bbb;
-    border-color: #e0e0e0;
-    padding: 9px 14px;
-  }
+  .btn-stop, .btn-save { background: #fff; color: #1a1a1a; }
+  .btn-stop:hover, .btn-save:hover { background: #f5f5f5; }
+  .btn-reset { background: transparent; color: #bbb; border-color: #e0e0e0; padding: 9px 14px; }
   .btn-reset:hover { color: #1a1a1a; border-color: #1a1a1a; }
   button:disabled { opacity: 0.3; cursor: not-allowed; }
 
-  .status {
-    font-size: 0.72rem;
-    color: #bbb;
-    margin-top: 12px;
-    min-height: 16px;
-    letter-spacing: 0.04em;
-  }
+  .status { font-size: 0.72rem; color: #bbb; margin-top: 12px; min-height: 16px; letter-spacing: 0.04em; }
+  .divider { border: none; border-top: 1px solid #ebebeb; margin: 24px 0; }
 
-  .divider {
-    border: none;
-    border-top: 1px solid #ebebeb;
-    margin: 24px 0;
-  }
+  .section-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .btn-text { font-size: 0.68rem; color: #ddd; background: none; border: none; cursor: pointer; padding: 0; font-weight: 400; letter-spacing: 0.04em; text-transform: none; }
+  .btn-text:hover { color: #1a1a1a; }
+  .confirm-row { display: none; align-items: center; gap: 8px; font-size: 0.68rem; color: #aaa; }
+  .confirm-row.visible { display: flex; }
+  .confirm-yes { color: #1a1a1a; font-weight: 600; background: none; border: none; cursor: pointer; padding: 0; font-size: 0.68rem; text-transform: none; letter-spacing: 0.04em; }
+  .confirm-no { color: #ccc; background: none; border: none; cursor: pointer; padding: 0; font-size: 0.68rem; text-transform: none; }
 
-  .section-title {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #aaa;
-    margin-bottom: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .clear-btn {
-    font-size: 0.68rem;
-    color: #ddd;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    text-transform: none;
-  }
-  .clear-btn:hover { color: #1a1a1a; }
-
-  .record-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px 0;
-    border-bottom: 1px solid #f5f5f5;
-    font-size: 0.82rem;
-  }
+  .record-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.82rem; }
   .record-left { display: flex; align-items: flex-start; gap: 8px; }
   .record-emoji { font-size: 0.85rem; margin-top: 1px; }
   .record-project { color: #1a1a1a; font-weight: 500; }
-  .record-meta { color: #ccc; font-size: 0.7rem; margin-top: 3px; letter-spacing: 0.02em; }
+  .record-meta { color: #ccc; font-size: 0.7rem; margin-top: 3px; }
+  .record-right { display: flex; align-items: center; gap: 10px; }
   .record-time { color: #1a1a1a; font-weight: 300; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+  .delete-btn { background: none; border: none; color: #ddd; cursor: pointer; font-size: 0.75rem; padding: 0; text-transform: none; font-weight: 400; }
+  .delete-btn:hover { color: #1a1a1a; }
 
-  .empty {
-    color: #ccc;
-    font-size: 0.78rem;
-    padding: 16px 0;
-    letter-spacing: 0.03em;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .today-total {
-    font-size: 0.75rem;
-    color: #aaa;
-    margin-top: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .today-total .total-label { display: flex; align-items: center; gap: 5px; }
+  .empty { color: #ccc; font-size: 0.78rem; padding: 16px 0; display: flex; align-items: center; gap: 6px; }
+  .today-total { font-size: 0.75rem; color: #aaa; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
   .today-total strong { color: #1a1a1a; font-weight: 600; }
 
-  .footer-deco {
-    margin-top: 28px;
-    text-align: center;
-    font-size: 0.75rem;
-    color: #e0e0e0;
-    letter-spacing: 0.15em;
-  }
+  /* 월별 요약 테이블 */
+  .monthly-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 4px; }
+  .monthly-table th { font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.65rem; color: #aaa; padding: 6px 8px; border-bottom: 1px solid #e8e8e8; text-align: left; }
+  .monthly-table td { padding: 7px 8px; border-bottom: 1px solid #f5f5f5; color: #1a1a1a; vertical-align: top; }
+  .monthly-table tr:last-child td { border-bottom: none; font-weight: 600; border-top: 1px solid #e8e8e8; }
+  .monthly-table .time-cell { font-variant-numeric: tabular-nums; font-weight: 300; }
+  .monthly-table .empty-cell { color: #ddd; }
+  .month-label { display: flex; align-items: center; gap: 5px; }
+  .current-month { font-weight: 600; }
+
+  .csv-btn { margin-top: 14px; width: 100%; padding: 9px; background: #fff; border: 1px dashed #ddd; color: #aaa; font-size: 0.72rem; letter-spacing: 0.08em; cursor: pointer; text-transform: uppercase; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .csv-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+
+  .footer-deco { margin-top: 28px; text-align: center; font-size: 0.75rem; color: #e0e0e0; letter-spacing: 0.15em; }
+
+  /* 탭 */
+  .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid #e8e8e8; }
+  .tab { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 0; margin-right: 20px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #bbb; cursor: pointer; margin-bottom: -1px; }
+  .tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
 </style>
 </head>
 <body>
@@ -203,31 +91,66 @@
   <div class="header-sub">𓂃 ꩜ &nbsp; 오늘도 한 코 한 코 &nbsp; ✦</div>
 </div>
 
-<div class="timer-box">
-  <input class="project-input" id="projectName" placeholder="🐰 project name..." />
-  <div class="display-wrap">
-    <div class="display" id="display">00:00:00</div>
-    <div class="display-deco" id="statusDeco">☆</div>
-  </div>
-  <div class="btn-row">
-    <button class="btn-start" id="btnStart" onclick="startTimer()">▶ Start</button>
-    <button class="btn-stop" id="btnStop" onclick="stopTimer()" disabled>⏸ Pause</button>
-    <button class="btn-save" id="btnSave" onclick="saveRecord()" disabled>✦ Save</button>
-    <button class="btn-reset" onclick="resetTimer()">↺</button>
-  </div>
-  <div class="status" id="status"></div>
+<!-- 타이머 -->
+<input class="project-input" id="projectName" placeholder="🐰 project name..." />
+<div class="display-wrap">
+  <div class="display" id="display">00:00:00</div>
+  <div class="display-deco" id="statusDeco">☆</div>
 </div>
+<div class="btn-row">
+  <button class="btn-start" id="btnStart" onclick="startTimer()">▶ Start</button>
+  <button class="btn-stop" id="btnStop" onclick="stopTimer()" disabled>⏸ Pause</button>
+  <button class="btn-save" id="btnSave" onclick="saveRecord()" disabled>✦ Save</button>
+  <button class="btn-reset" onclick="resetTimer()">↺</button>
+</div>
+<div class="status" id="status"></div>
 
 <hr class="divider">
 
-<div class="section-title">
-  <span>🐾 Today's Records</span>
-  <button class="clear-btn" onclick="clearRecords()">clear all</button>
+<!-- 탭 -->
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('today', this)">🐾 Today</button>
+  <button class="tab" onclick="switchTab('monthly', this)">📅 Monthly</button>
 </div>
-<div id="recordList"><div class="empty"><span>𓃰</span> No records yet — start knitting!</div></div>
-<div class="today-total" id="todayTotal" style="display:none">
-  <span class="total-label">🐇 Total today</span>
-  <strong id="totalTime">0h 0m</strong>
+
+<!-- 오늘 기록 탭 -->
+<div class="tab-content active" id="tab-today">
+  <div class="section-title">
+    <span>Records</span>
+    <span style="display:flex;align-items:center;gap:8px;">
+      <button class="btn-text" id="clearBtn" onclick="showConfirm()">clear all</button>
+      <span class="confirm-row" id="confirmRow">
+        정말요?
+        <button class="confirm-yes" onclick="clearToday()">yes</button>
+        <button class="confirm-no" onclick="hideConfirm()">no</button>
+      </span>
+    </span>
+  </div>
+  <div id="recordList"><div class="empty"><span>𓃰</span> No records yet — start knitting!</div></div>
+  <div class="today-total" id="todayTotal" style="display:none">
+    <span>🐇 Total today</span>
+    <strong id="totalTime">0h 0m</strong>
+  </div>
+</div>
+
+<!-- 월별 요약 탭 -->
+<div class="tab-content" id="tab-monthly">
+  <div class="section-title">
+    <span>2026 Summary</span>
+    <button class="btn-text" onclick="exportCSV()">↓ export csv</button>
+  </div>
+  <table class="monthly-table">
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Time</th>
+        <th>Sessions</th>
+        <th>Top Project</th>
+      </tr>
+    </thead>
+    <tbody id="monthlyBody"></tbody>
+  </table>
+  <button class="csv-btn" onclick="exportCSV()">🐰 Export all records as CSV</button>
 </div>
 
 <div class="footer-deco">✦ ꩜ ✦ ꩜ ✦</div>
@@ -240,16 +163,23 @@
   let startTime = null, elapsed = 0, timerInterval = null, running = false;
   let records = JSON.parse(localStorage.getItem('knit_records_v3') || '[]');
   const today = now.toLocaleDateString('ko-KR');
-
   const decos = ['🐇','𓂃','☆','𓃰','꩜','✦'];
   let decoIdx = 0;
 
+  const MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const recordEmojis = ['🐇','𓃰','🐾','✦','𓂃','☆'];
+
   function fmt(ms) {
     const s = Math.floor(ms / 1000);
-    const h = String(Math.floor(s / 3600)).padStart(2, '0');
-    const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const sec = String(s % 60).padStart(2, '0');
+    const h = String(Math.floor(s / 3600)).padStart(2,'0');
+    const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
+    const sec = String(s%60).padStart(2,'0');
     return `${h}:${m}:${sec}`;
+  }
+  function fmtShort(ms) {
+    const h = Math.floor(ms/3600000);
+    const m = Math.floor((ms%3600000)/60000);
+    return h > 0 ? `${h}h ${m}m` : `${m}m`;
   }
 
   function startTimer() {
@@ -259,7 +189,7 @@
     timerInterval = setInterval(() => {
       elapsed = Date.now() - startTime;
       document.getElementById('display').textContent = fmt(elapsed);
-      decoIdx = (decoIdx + 1) % decos.length;
+      decoIdx = (decoIdx+1) % decos.length;
       document.getElementById('statusDeco').textContent = decos[decoIdx];
     }, 800);
     document.getElementById('btnStart').disabled = true;
@@ -291,31 +221,55 @@
 
   function saveRecord() {
     stopTimer();
-    if (elapsed < 1000) { alert('1초 이상 기록해야 저장할 수 있어요 🐰'); return; }
+    if (elapsed < 1000) { document.getElementById('status').textContent = '🐰 1초 이상 기록해주세요!'; return; }
     const proj = document.getElementById('projectName').value.trim() || 'untitled project';
     const t = new Date();
     const rec = {
       project: proj,
       date: today,
+      dateObj: t.toISOString(),
       time: t.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      month: t.getMonth(), // 0-indexed
       ms: elapsed,
       display: fmt(elapsed)
     };
     records.unshift(rec);
     localStorage.setItem('knit_records_v3', JSON.stringify(records));
     renderRecords();
+    renderMonthly();
     resetTimer();
     document.getElementById('status').textContent = '✦ saved!';
   }
 
-  function clearRecords() {
-    if (!confirm('오늘 기록을 모두 지울까요? 🐾')) return;
-    records = records.filter(r => r.date !== today);
+  function deleteRecord(idx) {
+    records.splice(idx, 1);
     localStorage.setItem('knit_records_v3', JSON.stringify(records));
     renderRecords();
+    renderMonthly();
   }
 
-  const recordEmojis = ['🐇','𓃰','🐾','✦','𓂃','☆'];
+  function showConfirm() {
+    document.getElementById('clearBtn').style.display = 'none';
+    document.getElementById('confirmRow').classList.add('visible');
+  }
+  function hideConfirm() {
+    document.getElementById('clearBtn').style.display = '';
+    document.getElementById('confirmRow').classList.remove('visible');
+  }
+  function clearToday() {
+    records = records.filter(r => r.date !== today);
+    localStorage.setItem('knit_records_v3', JSON.stringify(records));
+    hideConfirm();
+    renderRecords();
+    renderMonthly();
+  }
+
+  function switchTab(name, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
 
   function renderRecords() {
     const todayRecs = records.filter(r => r.date === today);
@@ -325,26 +279,82 @@
       document.getElementById('todayTotal').style.display = 'none';
       return;
     }
-    list.innerHTML = todayRecs.map((r, i) => `
-      <div class="record-item">
-        <div class="record-left">
-          <span class="record-emoji">${recordEmojis[i % recordEmojis.length]}</span>
-          <div>
-            <div class="record-project">${r.project}</div>
-            <div class="record-meta">${r.time}</div>
+    list.innerHTML = todayRecs.map((r, i) => {
+      const globalIdx = records.indexOf(r);
+      return `
+        <div class="record-item">
+          <div class="record-left">
+            <span class="record-emoji">${recordEmojis[i % recordEmojis.length]}</span>
+            <div>
+              <div class="record-project">${r.project}</div>
+              <div class="record-meta">${r.time}</div>
+            </div>
           </div>
-        </div>
-        <div class="record-time">${r.display}</div>
-      </div>
-    `).join('');
-    const totalMs = todayRecs.reduce((a, r) => a + r.ms, 0);
-    const th = Math.floor(totalMs / 3600000);
-    const tm = Math.floor((totalMs % 3600000) / 60000);
-    document.getElementById('totalTime').textContent = `${th}h ${tm}m`;
+          <div class="record-right">
+            <div class="record-time">${r.display}</div>
+            <button class="delete-btn" onclick="deleteRecord(${globalIdx})">✕</button>
+          </div>
+        </div>`;
+    }).join('');
+    const totalMs = todayRecs.reduce((a,r) => a+r.ms, 0);
+    document.getElementById('totalTime').textContent = fmtShort(totalMs);
     document.getElementById('todayTotal').style.display = 'flex';
   }
 
+  function renderMonthly() {
+    const tbody = document.getElementById('monthlyBody');
+    const curMonth = now.getMonth();
+    let grandTotal = 0, grandSessions = 0;
+
+    const rows = MONTHS.map((label, i) => {
+      const monthRecs = records.filter(r => r.month === i);
+      const totalMs = monthRecs.reduce((a,r) => a+r.ms, 0);
+      const sessions = monthRecs.length;
+      grandTotal += totalMs;
+      grandSessions += sessions;
+
+      // 가장 많이 뜬 프로젝트
+      const projMap = {};
+      monthRecs.forEach(r => { projMap[r.project] = (projMap[r.project]||0) + r.ms; });
+      const topProj = Object.entries(projMap).sort((a,b)=>b[1]-a[1])[0];
+
+      const isCurrent = i === curMonth;
+      const isEmpty = sessions === 0;
+      return `<tr>
+        <td><span class="month-label ${isCurrent?'current-month':''}">${isCurrent?'🐾 ':''} ${label}</span></td>
+        <td class="time-cell ${isEmpty?'empty-cell':''}">${isEmpty ? '—' : fmtShort(totalMs)}</td>
+        <td class="${isEmpty?'empty-cell':''}">${isEmpty ? '—' : sessions}</td>
+        <td class="${isEmpty?'empty-cell':''}">${isEmpty ? '—' : (topProj?topProj[0]:'—')}</td>
+      </tr>`;
+    });
+
+    rows.push(`<tr>
+      <td>✦ Total</td>
+      <td class="time-cell">${grandTotal > 0 ? fmtShort(grandTotal) : '—'}</td>
+      <td>${grandSessions || '—'}</td>
+      <td></td>
+    </tr>`);
+
+    tbody.innerHTML = rows.join('');
+  }
+
+  function exportCSV() {
+    if (!records.length) { document.getElementById('status').textContent = '🐰 내보낼 기록이 없어요!'; return; }
+    const header = 'Date,Time,Project,Duration\n';
+    const rows = records.map(r =>
+      `"${r.date}","${r.time}","${r.project}","${r.display}"`
+    ).join('\n');
+    const blob = new Blob(['\uFEFF'+header+rows], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'knitting_records.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   renderRecords();
+  renderMonthly();
 </script>
 </body>
 </html>
