@@ -3,265 +3,348 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🧶 뜨개 타임 트래커</title>
+<title>Knitting Time Tracker</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fdf6f0;
-    color: #3d2b1f;
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
     min-height: 100vh;
-    padding: 20px;
+    padding: 28px 24px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1.5px solid #1a1a1a;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
   }
   h1 {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #8b5e52;
-    margin-bottom: 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .header-date {
+    font-size: 0.7rem;
+    color: #aaa;
     letter-spacing: 0.05em;
   }
-  .timer-box {
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px 20px;
-    box-shadow: 0 2px 12px rgba(139,94,82,0.1);
-    margin-bottom: 16px;
-    text-align: center;
+  .header-sub {
+    font-size: 0.72rem;
+    color: #bbb;
+    letter-spacing: 0.03em;
   }
+
   .project-input {
     width: 100%;
-    padding: 8px 12px;
-    border: 1.5px solid #e8d5c4;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    margin-bottom: 16px;
-    color: #3d2b1f;
-    background: #fdf6f0;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    background: transparent;
     outline: none;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
   }
-  .project-input:focus { border-color: #c9896e; }
-  .display {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #c9896e;
-    letter-spacing: 0.05em;
+  .project-input::placeholder { color: #ccc; }
+  .project-input:focus { border-bottom-color: #1a1a1a; }
+
+  .display-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
     margin-bottom: 20px;
-    font-variant-numeric: tabular-nums;
   }
+  .display {
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .display-deco {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    opacity: 0.5;
+  }
+
   .btn-row {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   button {
-    padding: 10px 22px;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    border: 1.5px solid #1a1a1a;
   }
-  .btn-start {
-    background: #c9896e;
-    color: #fff;
-  }
-  .btn-start:hover { background: #b5755b; }
-  .btn-stop {
-    background: #e8d5c4;
-    color: #8b5e52;
-  }
-  .btn-stop:hover { background: #d4b99e; }
+  .btn-start { background: #1a1a1a; color: #fff; }
+  .btn-start:hover { background: #333; }
+  .btn-stop { background: #fff; color: #1a1a1a; }
+  .btn-stop:hover { background: #f5f5f5; }
+  .btn-save { background: #fff; color: #1a1a1a; }
+  .btn-save:hover { background: #f5f5f5; }
   .btn-reset {
-    background: #f5ede6;
-    color: #b5856e;
-    font-size: 0.8rem;
-    padding: 10px 14px;
+    background: transparent;
+    color: #bbb;
+    border-color: #e0e0e0;
+    padding: 9px 14px;
   }
-  .btn-save {
-    background: #a8c5a0;
-    color: #fff;
-  }
-  .btn-save:hover { background: #8fb389; }
-  button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .btn-reset:hover { color: #1a1a1a; border-color: #1a1a1a; }
+  button:disabled { opacity: 0.3; cursor: not-allowed; }
+
   .status {
-    font-size: 0.8rem;
-    color: #b5856e;
-    margin-top: 10px;
-    min-height: 18px;
+    font-size: 0.72rem;
+    color: #bbb;
+    margin-top: 12px;
+    min-height: 16px;
+    letter-spacing: 0.04em;
   }
-  .records-box {
-    background: #fff;
-    border-radius: 16px;
-    padding: 18px 16px;
-    box-shadow: 0 2px 12px rgba(139,94,82,0.08);
+
+  .divider {
+    border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 24px 0;
   }
-  .records-box h2 {
-    font-size: 0.95rem;
-    color: #8b5e52;
-    margin-bottom: 12px;
+
+  .section-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .clear-btn {
-    font-size: 0.72rem;
-    color: #c9a090;
+    font-size: 0.68rem;
+    color: #ddd;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 2px 6px;
+    padding: 0;
     font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: none;
   }
+  .clear-btn:hover { color: #1a1a1a; }
+
   .record-item {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 0.82rem;
+  }
+  .record-left { display: flex; align-items: flex-start; gap: 8px; }
+  .record-emoji { font-size: 0.85rem; margin-top: 1px; }
+  .record-project { color: #1a1a1a; font-weight: 500; }
+  .record-meta { color: #ccc; font-size: 0.7rem; margin-top: 3px; letter-spacing: 0.02em; }
+  .record-time { color: #1a1a1a; font-weight: 300; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+
+  .empty {
+    color: #ccc;
+    font-size: 0.78rem;
+    padding: 16px 0;
+    letter-spacing: 0.03em;
+    display: flex;
     align-items: center;
-    padding: 8px 10px;
-    border-radius: 8px;
-    background: #fdf6f0;
-    margin-bottom: 6px;
-    font-size: 0.83rem;
+    gap: 6px;
   }
-  .record-project { color: #5a3e35; font-weight: 600; }
-  .record-meta { color: #a07060; font-size: 0.76rem; margin-top: 2px; }
-  .record-time { color: #c9896e; font-weight: 700; font-size: 0.9rem; }
-  .empty { color: #c9a090; font-size: 0.82rem; text-align: center; padding: 12px 0; }
+
   .today-total {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #8b5e52;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed #e8d5c4;
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .today-total span { font-weight: 700; color: #c9896e; }
+  .today-total .total-label { display: flex; align-items: center; gap: 5px; }
+  .today-total strong { color: #1a1a1a; font-weight: 600; }
+
+  .footer-deco {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #e0e0e0;
+    letter-spacing: 0.15em;
+  }
 </style>
 </head>
 <body>
-<h1>🧶 뜨개 타임 트래커</h1>
+
+<div class="header">
+  <div class="header-top">
+    <h1>🧶 Knitting Tracker</h1>
+    <span class="header-date" id="todayDate"></span>
+  </div>
+  <div class="header-sub">𓂃 ꩜ &nbsp; 오늘도 한 코 한 코 &nbsp; ✦</div>
+</div>
 
 <div class="timer-box">
-  <input class="project-input" id="projectName" placeholder="프로젝트 이름을 입력하세요" />
-  <div class="display" id="display">00:00:00</div>
+  <input class="project-input" id="projectName" placeholder="🐰 project name..." />
+  <div class="display-wrap">
+    <div class="display" id="display">00:00:00</div>
+    <div class="display-deco" id="statusDeco">☆</div>
+  </div>
   <div class="btn-row">
-    <button class="btn-start" id="btnStart" onclick="startTimer()">▶ 시작</button>
-    <button class="btn-stop" id="btnStop" onclick="stopTimer()" disabled>⏸ 일시정지</button>
-    <button class="btn-save" id="btnSave" onclick="saveRecord()" disabled>💾 저장</button>
+    <button class="btn-start" id="btnStart" onclick="startTimer()">▶ Start</button>
+    <button class="btn-stop" id="btnStop" onclick="stopTimer()" disabled>⏸ Pause</button>
+    <button class="btn-save" id="btnSave" onclick="saveRecord()" disabled>✦ Save</button>
     <button class="btn-reset" onclick="resetTimer()">↺</button>
   </div>
   <div class="status" id="status"></div>
 </div>
 
-<div class="records-box">
-  <h2>📋 오늘의 기록 <button class="clear-btn" onclick="clearRecords()">전체 삭제</button></h2>
-  <div id="recordList"><div class="empty">아직 기록이 없어요 🪡</div></div>
-  <div class="today-total" id="todayTotal" style="display:none">
-    오늘 총 뜨개 시간: <span id="totalTime">0시간 0분</span>
-  </div>
+<hr class="divider">
+
+<div class="section-title">
+  <span>🐾 Today's Records</span>
+  <button class="clear-btn" onclick="clearRecords()">clear all</button>
+</div>
+<div id="recordList"><div class="empty"><span>𓃰</span> No records yet — start knitting!</div></div>
+<div class="today-total" id="todayTotal" style="display:none">
+  <span class="total-label">🐇 Total today</span>
+  <strong id="totalTime">0h 0m</strong>
 </div>
 
+<div class="footer-deco">✦ ꩜ ✦ ꩜ ✦</div>
+
 <script>
-let startTime = null, elapsed = 0, timerInterval = null, running = false;
-let records = JSON.parse(localStorage.getItem('knit_records') || '[]');
-const today = new Date().toLocaleDateString('ko-KR');
-
-function fmt(ms) {
-  const s = Math.floor(ms / 1000);
-  const h = String(Math.floor(s / 3600)).padStart(2, '0');
-  const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-  const sec = String(s % 60).padStart(2, '0');
-  return `${h}:${m}:${sec}`;
-}
-
-function startTimer() {
-  if (running) return;
-  running = true;
-  startTime = Date.now() - elapsed;
-  timerInterval = setInterval(() => {
-    elapsed = Date.now() - startTime;
-    document.getElementById('display').textContent = fmt(elapsed);
-  }, 500);
-  document.getElementById('btnStart').disabled = true;
-  document.getElementById('btnStop').disabled = false;
-  document.getElementById('btnSave').disabled = false;
-  document.getElementById('status').textContent = '⏱ 뜨개 중...';
-}
-
-function stopTimer() {
-  if (!running) return;
-  running = false;
-  clearInterval(timerInterval);
-  document.getElementById('btnStart').disabled = false;
-  document.getElementById('btnStop').disabled = true;
-  document.getElementById('status').textContent = '⏸ 일시정지됨 — 이어서 시작하거나 저장하세요';
-}
-
-function resetTimer() {
-  running = false;
-  clearInterval(timerInterval);
-  elapsed = 0;
-  document.getElementById('display').textContent = '00:00:00';
-  document.getElementById('btnStart').disabled = false;
-  document.getElementById('btnStop').disabled = true;
-  document.getElementById('btnSave').disabled = true;
-  document.getElementById('status').textContent = '';
-}
-
-function saveRecord() {
-  stopTimer();
-  if (elapsed < 1000) { alert('1초 이상 기록해야 저장할 수 있어요!'); return; }
-  const proj = document.getElementById('projectName').value.trim() || '프로젝트 미입력';
   const now = new Date();
-  const rec = {
-    project: proj,
-    date: today,
-    time: now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }),
-    ms: elapsed,
-    display: fmt(elapsed)
-  };
-  records.unshift(rec);
-  localStorage.setItem('knit_records', JSON.stringify(records));
-  renderRecords();
-  resetTimer();
-  document.getElementById('status').textContent = '✅ 저장 완료!';
-}
+  document.getElementById('todayDate').textContent =
+    now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-function clearRecords() {
-  if (!confirm('오늘 기록을 모두 삭제할까요?')) return;
-  records = records.filter(r => r.date !== today);
-  localStorage.setItem('knit_records', JSON.stringify(records));
-  renderRecords();
-}
+  let startTime = null, elapsed = 0, timerInterval = null, running = false;
+  let records = JSON.parse(localStorage.getItem('knit_records_v3') || '[]');
+  const today = now.toLocaleDateString('ko-KR');
 
-function renderRecords() {
-  const todayRecs = records.filter(r => r.date === today);
-  const list = document.getElementById('recordList');
-  if (todayRecs.length === 0) {
-    list.innerHTML = '<div class="empty">아직 기록이 없어요 🪡</div>';
-    document.getElementById('todayTotal').style.display = 'none';
-    return;
+  const decos = ['🐇','𓂃','☆','𓃰','꩜','✦'];
+  let decoIdx = 0;
+
+  function fmt(ms) {
+    const s = Math.floor(ms / 1000);
+    const h = String(Math.floor(s / 3600)).padStart(2, '0');
+    const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+    const sec = String(s % 60).padStart(2, '0');
+    return `${h}:${m}:${sec}`;
   }
-  list.innerHTML = todayRecs.map(r => `
-    <div class="record-item">
-      <div>
-        <div class="record-project">🧶 ${r.project}</div>
-        <div class="record-meta">${r.date} ${r.time}</div>
-      </div>
-      <div class="record-time">${r.display}</div>
-    </div>
-  `).join('');
-  const totalMs = todayRecs.reduce((a, r) => a + r.ms, 0);
-  const th = Math.floor(totalMs / 3600000);
-  const tm = Math.floor((totalMs % 3600000) / 60000);
-  document.getElementById('totalTime').textContent = `${th}시간 ${tm}분`;
-  document.getElementById('todayTotal').style.display = 'block';
-}
 
-renderRecords();
+  function startTimer() {
+    if (running) return;
+    running = true;
+    startTime = Date.now() - elapsed;
+    timerInterval = setInterval(() => {
+      elapsed = Date.now() - startTime;
+      document.getElementById('display').textContent = fmt(elapsed);
+      decoIdx = (decoIdx + 1) % decos.length;
+      document.getElementById('statusDeco').textContent = decos[decoIdx];
+    }, 800);
+    document.getElementById('btnStart').disabled = true;
+    document.getElementById('btnStop').disabled = false;
+    document.getElementById('btnSave').disabled = false;
+    document.getElementById('status').textContent = '𓂃 knitting in progress...';
+  }
+
+  function stopTimer() {
+    if (!running) return;
+    running = false;
+    clearInterval(timerInterval);
+    document.getElementById('btnStart').disabled = false;
+    document.getElementById('btnStop').disabled = true;
+    document.getElementById('status').textContent = '🐰 paused — resume or save';
+  }
+
+  function resetTimer() {
+    running = false;
+    clearInterval(timerInterval);
+    elapsed = 0;
+    document.getElementById('display').textContent = '00:00:00';
+    document.getElementById('statusDeco').textContent = '☆';
+    document.getElementById('btnStart').disabled = false;
+    document.getElementById('btnStop').disabled = true;
+    document.getElementById('btnSave').disabled = true;
+    document.getElementById('status').textContent = '';
+  }
+
+  function saveRecord() {
+    stopTimer();
+    if (elapsed < 1000) { alert('1초 이상 기록해야 저장할 수 있어요 🐰'); return; }
+    const proj = document.getElementById('projectName').value.trim() || 'untitled project';
+    const t = new Date();
+    const rec = {
+      project: proj,
+      date: today,
+      time: t.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      ms: elapsed,
+      display: fmt(elapsed)
+    };
+    records.unshift(rec);
+    localStorage.setItem('knit_records_v3', JSON.stringify(records));
+    renderRecords();
+    resetTimer();
+    document.getElementById('status').textContent = '✦ saved!';
+  }
+
+  function clearRecords() {
+    if (!confirm('오늘 기록을 모두 지울까요? 🐾')) return;
+    records = records.filter(r => r.date !== today);
+    localStorage.setItem('knit_records_v3', JSON.stringify(records));
+    renderRecords();
+  }
+
+  const recordEmojis = ['🐇','𓃰','🐾','✦','𓂃','☆'];
+
+  function renderRecords() {
+    const todayRecs = records.filter(r => r.date === today);
+    const list = document.getElementById('recordList');
+    if (!todayRecs.length) {
+      list.innerHTML = '<div class="empty"><span>𓃰</span> No records yet — start knitting!</div>';
+      document.getElementById('todayTotal').style.display = 'none';
+      return;
+    }
+    list.innerHTML = todayRecs.map((r, i) => `
+      <div class="record-item">
+        <div class="record-left">
+          <span class="record-emoji">${recordEmojis[i % recordEmojis.length]}</span>
+          <div>
+            <div class="record-project">${r.project}</div>
+            <div class="record-meta">${r.time}</div>
+          </div>
+        </div>
+        <div class="record-time">${r.display}</div>
+      </div>
+    `).join('');
+    const totalMs = todayRecs.reduce((a, r) => a + r.ms, 0);
+    const th = Math.floor(totalMs / 3600000);
+    const tm = Math.floor((totalMs % 3600000) / 60000);
+    document.getElementById('totalTime').textContent = `${th}h ${tm}m`;
+    document.getElementById('todayTotal').style.display = 'flex';
+  }
+
+  renderRecords();
 </script>
 </body>
 </html>
